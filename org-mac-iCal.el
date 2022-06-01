@@ -101,6 +101,7 @@ file, otherwise it will be a diary file.
   :group 'org-time
   :type 'file)
 
+;;;###autoload
 (defun org-mac-iCal ()
   "Selects checked calendars in iCal.app and imports them into
 the the Emacs diary"
