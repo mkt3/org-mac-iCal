@@ -153,7 +153,8 @@ the the Emacs diary"
      (mapc
       (lambda (y)
         (rename-file (concat x "/" y);
-                     (concat "~/Library/Calendars/" y)))
+                     (concat "~/Library/Calendars/" y)
+		     'overwrite))
       (directory-files x nil ".*ics$")))
    (append caldav-folders exchange-folders))
 
