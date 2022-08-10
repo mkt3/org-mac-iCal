@@ -257,19 +257,22 @@ date range so that Emacs calendar view doesn't grind to a halt"
     (goto-line 1)
     (write-region (point-min) (point-max) string))
 
-  (icalendar-import-file string org-mac-iCal-file))
+  (icalendar-import-file string org-mac-iCal-file)
+
+  (setq usedCalendarsBuffers (mapcar (function buffer-name) (buffer-list)))
+  (omi-kill-ics-buffer usedCalendarsBuffers))
 
 (defun omi-kill-diary-buffer (list)
   (mapc
    (lambda (x)
-     (if (string-match "^diary" x)
+     (if (string-match (concat (file-name-nondirectory diary-file) "<.*>$") x)
          (kill-buffer x)))
    list))
 
 (defun omi-kill-ics-buffer (list)
   (mapc
    (lambda (x)
-     (if (string-match "ics$" x)
+     (if (string-match "ics<.*>$" x)
          (kill-buffer x)))
    list))
 
