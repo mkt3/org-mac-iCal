@@ -251,6 +251,10 @@ date range so that Emacs calendar view doesn't grind to a halt"
         (re-search-forward "^ORG.*" nil t)
       (replace-match "\n"))
     (goto-line 1)
+    (while
+        (re-search-forward "^DESCRIPTION:" nil t)
+      (replace-match "COMMENT:"))
+    (goto-line 1)
     (write-region (point-min) (point-max) string))
 
   (icalendar-import-file string org-mac-iCal-file))
